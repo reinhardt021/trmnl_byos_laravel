@@ -27,6 +27,9 @@ WORKDIR /var/www/html
 COPY --chown=www-data:www-data . /var/www/html
 COPY --chown=www-data:www-data .env.example .env
 
+# Make it possible to download files
+RUN git config --global --add safe.directory /var/www/html
+
 # Install the composer dependencies
 RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
