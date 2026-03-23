@@ -15,6 +15,7 @@ services:
            - database:/var/www/html/database/storage
            - storage:/var/www/html/storage/app/public/images/generated
         restart: unless-stopped
+        container_name: trmnl_server
         #platform: "linux/arm64/v8"
     tunnel:
       image: cloudflare/cloudflared:latest
