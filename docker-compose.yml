@@ -16,6 +16,18 @@ services:
            - storage:/var/www/html/storage/app/public/images/generated
         restart: unless-stopped
         #platform: "linux/arm64/v8"
+    tunnel:
+      image: cloudflare/cloudflared:latest
+      container_name: cloudflared
+      command: tunnel --no-autoupdate run
+      environment:
+        - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+      restart: unless-stopped
+      networks:
+        - cloudflared-network
+networks:
+    cloudflared-network:
+      driver: bridge
 volumes:
     database:
     storage:
